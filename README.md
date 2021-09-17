@@ -35,3 +35,4 @@
 2. Assign variable to the smart contract's deployed state: `{variable name} = await {name of our contract}.deployed` i.e. `organDonation = OrganDonationNetwork.deployed()`
 3. We can then access properties of our smart contract through this variable. i.e. `organDonation.address` will return the address that our contract was deployed to on the Blockchain, `patients_array = await organDonation.patients` => `patients_array` will return the array of all patients and their information.
 
+*Based off this tutorial: https://www.dappuniversity.com/articles/blockchain-app-tutorial#projectSetup*
