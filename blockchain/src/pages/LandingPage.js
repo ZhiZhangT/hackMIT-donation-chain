@@ -8,8 +8,8 @@ const LandingPage = () => {
     return(
         <div> 
             <Hero/>
-            <DonorForm/>
-            <OrganSection/>
+            {/* <DonorForm/>
+            <OrganSection/> */}
         </div>
     )
 }

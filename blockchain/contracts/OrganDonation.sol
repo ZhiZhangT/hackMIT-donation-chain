@@ -12,13 +12,13 @@ contract OrganDonationNetwork{
         kidney, pancreas, intestine, liver, lung
     }
 
+
     struct OrganDonor {
         address donor;
         address patient;
         Organ organ;
         BloodType blood_type;
-        Size size;
-        Sate state;
+        uint location;
     }
 
     struct Patient {
@@ -58,12 +58,13 @@ contract OrganDonationNetwork{
 
     // create a sign up form in the UI
     // do form validation before sending this api call
-    function signUpForDonation(BloodType bloodType, Organ organ) public{
+    function signUpForDonation(BloodType bloodType, Organ organ, uint location) public{
         donors[msg.sender] = OrganDonor(
             msg.sender,
             address(0),
+            organ,
             bloodType,
-            organ
+            location
         );
 
         emit LogDonor(msg.sender, bloodType, organ);
