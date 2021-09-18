@@ -6,7 +6,7 @@ import Marketplace from '../abis/Marketplace.json'
 import Navbar from './Navbar'
 import Main from './Main'
 
-function Main() {
+function helper() {
   const [accounts, setAccounts] = useState(0);
   const [account, setAccount] = useState(0);
   const [networkID, setNetworkID] = useState(0);
@@ -49,38 +49,25 @@ function Main() {
       for (var i = 1; i <= organCount; i++) {
         await setProduct(marketplace.methods.products(i).call())
       }
-      setLoading
+      setLoading(false)
     } else {
       window.alert('Marketplace contract not deployed to detected network.')
     }
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      account: '',
-      productCount: 0,
-      products: [],
-      loading: true
-    }
-
-    this.donateOrgan = this.donateOrgan.bind(this)
-    this.acceptOrgan = this.acceptOrgan.bind(this)
-  }
-
   donateOrgan(dName, price, dOrgan, dBloodType, dWeight) {
-    this.setState({ loading: true })
-    this.state.marketplace.methods.donateOrgan(dName, price, dOrgan, dBloodType, dWeight).send({ from: this.state.account })
+    setLoading(true)
+    this.state.marketplace.methods.donateOrgan(dName, price, dOrgan, dBloodType, dWeight).send({ account })
     .once('receipt', (receipt) => {
-      this.setState({ loading: false })
+      setLoading(false)
     })
   }
 
   acceptOrgan(id, price, pOrgan, pBloodtype, pWeight, pLocation, condition) {
-    this.setState({ loading: true })
-    this.state.marketplace.methods.acceptOrgan(id, price, pOrgan, pBloodtype, pWeight, pLocation, condition).send({ from: this.state.account, value: price })
+    setLoading(true)
+    this.state.marketplace.methods.acceptOrgan(id, price, pOrgan, pBloodtype, pWeight, pLocation, condition).send({ account, value: price })
     .once('receipt', (receipt) => {
-      this.setState({ loading: false })
+        setLoading(false)
     })
   }
 
