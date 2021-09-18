@@ -15,13 +15,14 @@ contract OrganDonationNetwork{
 
     struct OrganDonor {
         address donor;
-        address patient;
         Organ organ;
-        BloodType blood_type;
-        uint location;
+        BloodType bloodType;
+        uint size;
+        string location;
     }
 
     struct Patient {
+        address patient;
         uint weight;
         BloodType[] blood_type;
         address identity;
@@ -58,7 +59,7 @@ contract OrganDonationNetwork{
 
     // create a sign up form in the UI
     // do form validation before sending this api call
-    function signUpForDonation(BloodType bloodType, Organ organ, uint location) public{
+    function signUpForDonation(BloodType bloodType, Organ organ, string location) public{
         donors[msg.sender] = OrganDonor(
             msg.sender,
             address(0),
@@ -108,7 +109,13 @@ contract OrganDonationNetwork{
         organDonor = donors[donor];
     }
 
+    function viewDonors(address donor) public view returns(OrganDonor memory organDonor){
+        organDonor = donors[donor];
+    }
+
     // todo: what about organs obtained from deceased patients? how do we account for that
+        // could have a page for people to sign up ahead of time (similar to what sg does)
+        // could have doctors input info for people who died and did not manage to sign up 
     // todo: change matched pairs from array to mappings
     // todo: what to do if there is already a matched pair but donor withdraw
 
