@@ -4,7 +4,7 @@ class Main extends Component {
   render() {
     return (
       <div id="content">
-        <h1>Add Product</h1>
+        <h1>Add Organ</h1>
         <form onSubmit={(event) => {
           event.preventDefault()
           const dName = this.donorName.value
@@ -21,16 +21,16 @@ class Main extends Component {
               type="text"
               ref={(input) => { this.donorName = input }}
               className="form-control"
-              placeholder="Product Name"
+              placeholder="Donor Name"
               required />
           </div>
           <div className="form-group mr-sm-2">
             <input
-              id="productPrice"
+              id="organPrice"
               type="text"
               ref={(input) => { this.productPrice = input }}
               className="form-control"
-              placeholder="Product Price"
+              placeholder="Gas Price"
               required />
           </div>
           <div className="form-group mr-sm-2">
@@ -57,39 +57,41 @@ class Main extends Component {
               type="text"
               ref={(input) => { this.donorWeight = input }}
               className="form-control"
-              placeholder="Weight"
+              placeholder="Donor Weight"
               required />
           </div>
           
           
-          <button type="submit" className="btn btn-primary">Add Product</button>
+          <button type="submit" className="btn btn-primary">Add Organ</button>
         </form>
         <p>&nbsp;</p>
-        <h2>Donate Organ</h2>
+        <h2>Organs Avaiable for Donation</h2>
         <table className="table">
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th scope="col">Price</th>
+              <th scope="col">Gas Price</th>
               <th scope="col">Owner</th>
+              <th scope="col">Organ</th>
+              <th scope="col">Blood Type</th>
+              <th scope="col">Weight</th>
 
-              <th scope="col"></th>
             </tr>
           </thead>
-          <tbody id="productList">
-            { this.props.products.map((product, key) => {
+          <tbody id="organList">
+            { this.props.products.map((organ, key) => {
               return(
                 <tr key={key}>
-                  <th scope="row">{product.id.toString()}</th>
-                  <td>{product.name}</td>
-                  <td>{window.web3.utils.fromWei(product.price.toString(), 'Ether')} Eth</td>
-                  <td>{product.owner}</td>
+                  <th scope="row">{organ.id.toString()}</th>
+                  <td>{Organ.name}</td>
+                  <td>{window.web3.utils.fromWei(Organ.price.toString(), 'Ether')} Eth</td>
+                  <td>{Organ.owner}</td>
                   <td>
-                    { !product.purchased
+                    { !Organ.purchased
                       ? <button
-                          name={product.id}
-                          value={product.price}
+                          name={Organ.id}
+                          value={Organ.price}
                           onClick={(event) => {
                             this.props.acceptOrgan(event.target.dName, event.target.value)
                           }}
