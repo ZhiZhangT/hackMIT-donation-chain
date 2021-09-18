@@ -15,8 +15,10 @@ contract OrganDonationNetwork{
     struct OrganDonor {
         address donor;
         address patient;
-        BloodType blood_type;
         Organ organ;
+        BloodType blood_type;
+        Size size;
+        Sate state;
     }
 
     struct Patient {
