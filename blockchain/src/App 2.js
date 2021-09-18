@@ -13,6 +13,8 @@ function Main() {
   const [networkData, setNetworkData] = useState(0);
   const [marketplace, setMarketplace] = useState(0);
   const [organCount, setOrganCount] = useState(0);
+  const [organ, setOrgan]=useState(0);
+  const [loading, setLoading]=useState(false);
   
   async componentWillMount() {
     await this.loadWeb3()
@@ -45,12 +47,9 @@ function Main() {
       await organCount(marketplace.methods.organCount().call())
       // Load products
       for (var i = 1; i <= organCount; i++) {
-        const product = await marketplace.methods.products(i).call()
-        this.setState({
-          products: [...this.state.products, product]
-        })
+        await setProduct(marketplace.methods.products(i).call())
       }
-      this.setState({ loading: false})
+      setLoading
     } else {
       window.alert('Marketplace contract not deployed to detected network.')
     }

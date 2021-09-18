@@ -13,6 +13,8 @@ function Main() {
   const [networkData, setNetworkData] = useState(0);
   const [marketplace, setMarketplace] = useState(0);
   const [organCount, setOrganCount] = useState(0);
+  const [organ, setOrgan]=useState(0);
+  const [loading, setLoading]=useState(false);
   
   async componentWillMount() {
     await this.loadWeb3()
@@ -45,43 +47,27 @@ function Main() {
       await organCount(marketplace.methods.organCount().call())
       // Load products
       for (var i = 1; i <= organCount; i++) {
-        const product = await marketplace.methods.products(i).call()
-        this.setState({
-          products: [...this.state.products, product]
-        })
+        await setProduct(marketplace.methods.products(i).call())
       }
-      this.setState({ loading: false})
+      setLoading(false)
     } else {
       window.alert('Marketplace contract not deployed to detected network.')
     }
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      account: '',
-      productCount: 0,
-      products: [],
-      loading: true
-    }
-
-    this.donateOrgan = this.donateOrgan.bind(this)
-    this.acceptOrgan = this.acceptOrgan.bind(this)
-  }
-
   donateOrgan(dName, price, dOrgan, dBloodType, dWeight) {
-    this.setState({ loading: true })
-    this.state.marketplace.methods.donateOrgan(dName, price, dOrgan, dBloodType, dWeight).send({ from: this.state.account })
+    setLoading(true)
+    this.state.marketplace.methods.donateOrgan(dName, price, dOrgan, dBloodType, dWeight).send({ account })
     .once('receipt', (receipt) => {
-      this.setState({ loading: false })
+      setLoading(false)
     })
   }
 
   acceptOrgan(id, price, pOrgan, pBloodtype, pWeight, pLocation, condition) {
-    this.setState({ loading: true })
-    this.state.marketplace.methods.acceptOrgan(id, price, pOrgan, pBloodtype, pWeight, pLocation, condition).send({ from: this.state.account, value: price })
+    setLoading(true)
+    this.state.marketplace.methods.acceptOrgan(id, price, pOrgan, pBloodtype, pWeight, pLocation, condition).send({ account, value: price })
     .once('receipt', (receipt) => {
-      this.setState({ loading: false })
+        setLoading(false)
     })
   }
 
