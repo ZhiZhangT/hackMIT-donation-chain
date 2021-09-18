@@ -16,13 +16,13 @@ function helper() {
   const [organ, setOrgan]=useState(0);
   const [loading, setLoading]=useState(false);
   
-  async componentWillMount() {
+  async function componentWillMount() {
     await this.loadWeb3()
     await this.loadBlockchainData()
   }
 
   // Connect web3 to metamask (accesses a node to talk to bc)
-  async loadWeb3() {
+  async function loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
       await window.ethereum.enable()
@@ -35,7 +35,7 @@ function helper() {
     }
   }
 
-  async loadBlockchainData() {
+  async function loadBlockchainData() {
     const web3 = window.web3
     // Load account
     await setAccounts(web3.eth.getAccounts());
@@ -55,7 +55,7 @@ function helper() {
     }
   }
 
-  donateOrgan(dName, price, dOrgan, dBloodType, dWeight) {
+  function donateOrgan(dName, price, dOrgan, dBloodType, dWeight) {
     setLoading(true)
     this.state.marketplace.methods.donateOrgan(dName, price, dOrgan, dBloodType, dWeight).send({ account })
     .once('receipt', (receipt) => {
@@ -63,7 +63,7 @@ function helper() {
     })
   }
 
-  acceptOrgan(id, price, pOrgan, pBloodtype, pWeight, pLocation, condition) {
+  function acceptOrgan(id, price, pOrgan, pBloodtype, pWeight, pLocation, condition) {
     setLoading(true)
     this.state.marketplace.methods.acceptOrgan(id, price, pOrgan, pBloodtype, pWeight, pLocation, condition).send({ account, value: price })
     .once('receipt', (receipt) => {
@@ -71,26 +71,25 @@ function helper() {
     })
   }
 
-  render() {
-    return (
-      <div>
-        <Navbar account={this.state.account} />
-        <div className="container-fluid mt-5">
-          <div className="row">
-            <main role="main" className="col-lg-12 d-flex">
-              { this.state.loading
-                ? <div id="loader" className="text-center"><p className="text-center">Loading...</p></div>
-                : <Main
-                  products={this.state.products}
-                  donateOrgan={this.donateOrgan}
-                  acceptOrgan={this.acceptOrgan} />
-              }
-            </main>
-          </div>
+  return (
+    <div>
+      <Navbar account={this.state.account} />
+      <div className="container-fluid mt-5">
+        <div className="row">
+          <main role="main" className="col-lg-12 d-flex">
+            { this.state.loading
+              ? <div id="loader" className="text-center"><p className="text-center">Loading...</p></div>
+              : <Main
+                products={this.state.products}
+                donateOrgan={this.donateOrgan}
+                acceptOrgan={this.acceptOrgan} />
+            }
+          </main>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+
 }
 
 export default App;
