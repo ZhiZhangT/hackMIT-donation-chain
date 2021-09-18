@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Fondamento:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fondamento:ital@1&display=swap');
+
+.impactTitle{
+    font-family: 'Fondamento', cursive;
+    font-size: 50px;
+    color: rgb(222, 219, 219);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.storyText{
+    font-family: 'Fondamento', cursive;
+    line-height: 2em;
+}
+
+.pulse {
+    background-color: rgba(72, 26, 0, 0.0);
+    animation: pulse-animation ease-in-out 2s infinite;
+  }
+  
+@keyframes pulse-animation {
+0% {
+    
+    box-shadow: 0 0 0 0px rgba(190, 184, 72, 0.05);
+}
+50% {
+    box-shadow: 0 0 0 100px rgba(0, 0, 0, 0.02);
+}
+100% {
+    box-shadow: 0 0 0 100px rgba(0, 0, 0, 0.02);
+}
+}
