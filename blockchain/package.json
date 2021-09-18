@@ -8,7 +8,10 @@
   },
   "scripts": {
     "dev": "lite-server",
-    "test": "echo \"Error: no test specified\" && sexit 1"
+    "test": "echo \"Error: no test specified\" && sexit 1",
+    "start": "craco start",
+    "build": "craco build",
+    "eject": "react-scripts eject"
   },
   "author": "Team Old Allies",
   "license": "ISC",
@@ -20,6 +23,41 @@
     "lite-server": "^2.3.0",
     "nodemon": "^1.17.3",
     "truffle": "5.0.2",
-    "truffle-contract": "3.0.6"
+    "truffle-contract": "3.0.6",
+    "@craco/craco": "^6.3.0",
+    "@react-spring/three": "^9.2.4",
+    "@react-spring/web": "^9.2.4",
+    "@react-three/drei": "^7.8.3",
+    "@react-three/fiber": "^7.0.7",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "three": "^0.132.2",
+    "web-vitals": "^1.1.2",
+    "autoprefixer": "^9.8.6",
+    "postcss": "^7.0.36",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.14"
+  },
+
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
