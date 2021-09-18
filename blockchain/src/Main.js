@@ -80,18 +80,18 @@ class Main extends Component {
             </tr>
           </thead>
           <tbody id="organList">
-            { this.props.products.map((organ, key) => {
+            { this.props.organs.map((organ, key) => {
               return(
                 <tr key={key}>
                   <th scope="row">{organ.id.toString()}</th>
-                  <td>{Organ.name}</td>
-                  <td>{window.web3.utils.fromWei(Organ.price.toString(), 'Ether')} Eth</td>
-                  <td>{Organ.owner}</td>
+                  <td>{organ.name}</td>
+                  <td>{window.web3.utils.fromWei(organ.price.toString(), 'Ether')} Eth</td>
+                  <td>{organ.owner}</td>
                   <td>
-                    { !Organ.purchased
+                    { !organ.purchased
                       ? <button
-                          name={Organ.id}
-                          value={Organ.price}
+                          name={organ.id}
+                          value={organ.price}
                           onClick={(event) => {
                             this.props.acceptOrgan(event.target.dName, event.target.value)
                           }}
