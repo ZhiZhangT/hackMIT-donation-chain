@@ -6,7 +6,7 @@ import Marketplace from '../abis/Marketplace.json'
 import Navbar from './Navbar'
 import Main from './Main'
 
-function Main() {
+function helper() {
   const [accounts, setAccounts] = useState(0);
   const [account, setAccount] = useState(0);
   const [networkID, setNetworkID] = useState(0);
