@@ -8,7 +8,8 @@ const FormInput = props => {
                 placeholder={props.placeholder}
                 onChange={e => props.callback(e.target.value)} 
                 name={props.text}
-                value={props.value} />
+                value={props.value} 
+            />
             <div className="pt-1 bg-blue-200"></div>
         </label>
     )

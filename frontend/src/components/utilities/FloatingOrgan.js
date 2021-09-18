@@ -3,14 +3,15 @@ import { useFrame } from "@react-three/fiber";
 import { useSpring, animated, config } from "@react-spring/three";
 import { Plane } from "@react-three/drei";
 
-import Model from "./utilities/Model"
+import Model from "./Model"
 
-const FloatingLiver = _ => {
+const FloatingOrgan = props => {
+    console.log(props.modelPath)
     const myMesh = React.useRef();
     const [active, setActive] = useState(false);
 
     const { scale } = useSpring({
-        scale: active ? 1.5 : 1,
+        scale: active ? 1.2 : 1,
         config: config.wobbly
     });
 
@@ -28,7 +29,7 @@ const FloatingLiver = _ => {
                 castShadow
             >
                 <Suspense fallback={null}>
-                    <Model path={"./liver.gltf"} scale={0.03} position={[0,2,0]}/>
+                    <Model modelPath={props.modelPath} scale={props.scale} rotation={props.rotation} position={props.position}/>
                 </Suspense>
             </animated.mesh>
             <Plane
@@ -43,4 +44,6 @@ const FloatingLiver = _ => {
     );
 }
 
-export default FloatingLiver
+export default FloatingOrgan
+
+// kidney, scale:1, position: [0,1.5,0]

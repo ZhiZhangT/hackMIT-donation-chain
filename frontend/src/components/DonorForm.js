@@ -6,8 +6,7 @@ const DonorForm = props => {
     const [name, setName] = useState("")
     const [bloodType, setBloodType] = useState("")
     const [streetAddress, setStreetAddress] = useState("")
-
-
+    
     return (
         <form className="flex flex-col w-96 px-5 rounded-xl shadow-lg">
             <FormInput text="Name" placeholder="type name here" callback={setName} value={name}/>

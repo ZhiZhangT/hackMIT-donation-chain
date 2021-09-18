@@ -1,10 +1,10 @@
 import { Suspense } from "react"
 
-import backgroundImg from "../assets/backgroundImg.jpg"
+import backgroundImg from "../../assets/backgroundImg.jpg"
 
 import classes from "./Hero.module.css"
 
-import Model from "./utilities/Model"
+import Model from "../utilities/Model"
 import { Canvas, } from "@react-three/fiber";
 
 const Hero = () => {
@@ -39,7 +39,7 @@ const Hero = () => {
                         className="z-0 pl-4"
                     >
                         <Suspense fallback={null}>
-                            <Model path={"./shield.gltf"} scale={0.8} rotation={[0, -2.27, 0.15]} position={[-1.1, -0.5, 0]} />
+                            <Model modelPath={"./shield.gltf"} scale={0.8} rotation={[0, -2.27, 0.15]} position={[-1.1, -0.5, 0]} />
                         </Suspense>
                         <ambientLight intensity={0.5} />
                         <directionalLight
@@ -57,7 +57,6 @@ const Hero = () => {
                 <img className="absolute top-0 left-0 -z-10 w-screen h-screen" src={backgroundImg} alt="background" />
                 <div className="absolute top-0 left-0 h-full w-full bg-black opacity-70 -z-10"></div>
             </div>
-
         </div>
     )
 }
