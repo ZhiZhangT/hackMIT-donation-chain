@@ -11,7 +11,7 @@ import Web3 from 'web3'
 
 import LandingPage from "./pages/LandingPage"
 import HospitalPage from "./pages/HospitalPage"
-import OrganDonationNetwork from './abis/OrganDonationNetwork.json'
+import OrganDonationNetwork from './test/contracts/OrganDonationNetwork.json'
 
 function App() {
   const [account, setAccount] = useState(null)
@@ -37,7 +37,7 @@ function App() {
     const accounts = await web3.eth.getAccounts()
     // console.log(accounts)
 
-    setAccount("0x3A4a973A457B2a28917E2FAE26f630CD2064e611")
+    setAccount("0x1A402538C228b93F193F34d8f83A7119A876446a")
     const networkId = await web3.eth.net.getId()
     console.log(networkId)
     const networkData = OrganDonationNetwork.networks["5777"]

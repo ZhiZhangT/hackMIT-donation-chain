@@ -29,7 +29,7 @@ const DonorForm = props => {
     const handleSubmit = () => {
         console.log(props.account)
         console.log(props.organNetwork.methods.donateOrgan("tom", 0, 0, 0))
-        props.organNetwork.methods.viewDonors().call()
+        props.organNetwork.methods.donateOrgan("tom", 0, 0, 0).send({from:"0x3A4a973A457B2a28917E2FAE26f630CD2064e611"})
     }
     
     return (
