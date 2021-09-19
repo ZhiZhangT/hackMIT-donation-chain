@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.5.16;
-pragma experimental ABIEncoderV2;
+pragma solidity ^0.5.0;
+
 
 contract OrganDonationNetwork{
     // m stands for minux and p stands for plus
@@ -16,7 +16,6 @@ contract OrganDonationNetwork{
         address donor;
         Organ organ;
         BloodType bloodType;
-        uint size;
         string location;
     }
 
@@ -44,7 +43,8 @@ contract OrganDonationNetwork{
     event LogDonor(
         address donor,
         BloodType bloodType,
-        Organ organ
+        Organ organ,
+        string location
     );
 
     event LogPairs(
