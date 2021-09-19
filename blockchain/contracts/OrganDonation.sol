@@ -14,11 +14,12 @@ contract OrganDonationNetwork{
 
 
     struct OrganDonor {
-        address donor;
-        address patient;
+        // address donor;
+        // address patient;
+        bytes32 name;
         Organ organ;
         BloodType blood_type;
-        uint location;
+        uint weight;        
     }
 
     struct Patient {
@@ -58,13 +59,14 @@ contract OrganDonationNetwork{
 
     // create a sign up form in the UI
     // do form validation before sending this api call
-    function signUpForDonation(BloodType bloodType, Organ organ, uint location) public{
+    function donateOrgan(bytes32 name, BloodType bloodType, Organ organ, uint weight) public{
         donors[msg.sender] = OrganDonor(
-            msg.sender,
-            address(0),
+            // msg.sender,
+            // address(0),
+            name,
             organ,
             bloodType,
-            location
+            weight
         );
 
         emit LogDonor(msg.sender, bloodType, organ);
@@ -73,9 +75,9 @@ contract OrganDonationNetwork{
     //after sending donor event to database
     //once database found a pair, send an api call to match patient and add to list of pairs
     function matchPairs(address donor, address patient) public {
-        require(donor != patient, "You cant have the same address for Donor and patient");
-        require(donor != address(0), "Donor is not valid");
-        require(donors[donor].patient==address(0), "Donor has already completed donation");
+        // require(donor != patient, "You cant have the same address for Donor and patient");
+        // require(donor != address(0), "Donor is not valid");
+        // require(donors[donor].patient==address(0), "Donor has already completed donation");
 
         pairs.push(
             MatchedPair(
@@ -91,16 +93,16 @@ contract OrganDonationNetwork{
     }
 
     function CompleteDonation(address donor, address patient) public{
-        require(donor != address(0));
-        require(patient != address(0));
-        donors[donor].patient = patient;
+        // require(donor != address(0));
+        // require(patient != address(0));
+        // donors[donor].patient = patient;
         // remove matched pair
         emit completeMatch(donor, patient);
     }
 
     function withdrawDonation(address donor) public{
-        require(donor != address(0));
-        require(donors[donor].patient == address(0));
+        // require(donor != address(0));
+        // require(donors[donor].patient == address(0));
         delete donors[donor];
     }
 

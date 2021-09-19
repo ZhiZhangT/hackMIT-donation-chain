@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import FormInput from "./utilities/FormInput"
 
 
 const DonorForm = props => {
@@ -7,8 +8,28 @@ const DonorForm = props => {
     const [bloodType, setBloodType] = useState("")
     const [weight, setWeight] = useState(0)
 
+    const [dOrgan, setdOrgan] = useState({
+        "liver": true, 
+    })
+
+    const updateDOrgan = (e, key) => {
+        console.log(e)
+        console.log(dOrgan)
+        let dOrganCopy = Object.assign({},dOrgan)
+        dOrganCopy[key] = !dOrganCopy[key]
+        setdOrgan(dOrganCopy)
+    }
+
+    // const updateOrgans = idx => {
+    //     let dOrganCopy = dOrgan.slice() 
+    //     dOrganCopy = 
+    //     setdOrgan()
+    // }
+
     const handleSubmit = () => {
-        props.organNetwork.methods.donateOrgan(donorName,price,organType,bloodType,weight).send({ from: this.state.account})
+        console.log(props.account)
+        console.log(props.organNetwork.methods.donateOrgan("tom", 0, 0, 0))
+        props.organNetwork.methods.viewDonors().call()
     }
     
     return (
@@ -17,7 +38,10 @@ const DonorForm = props => {
             <FormInput text="Organ" placeholder="what organ donation would you like to make?" callback={setOrganType} value={organType}/>
             <FormInput text="Blood type" placeholder="fill in your blood type" callback={setBloodType} value={bloodType}/>
             <FormInput text="Weight (lbs)" type="number" placeholder="fill in your weight here" callback={setWeight} value={weight}/>
-            <button onClick={handleSubmit}>Submit</button>
+            <input type="radio" value="liver" checked={dOrgan["liver"]} onClick={e => updateDOrgan(e, "liver")}/> 
+            <button type="button" onClick={handleSubmit}>Submit</button>
         </form>
     )
 }
+
+export default DonorForm

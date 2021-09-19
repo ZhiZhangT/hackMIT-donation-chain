@@ -8,7 +8,10 @@ import {
   Redirect
 } from "react-router-dom";
 import Web3 from 'web3'
-import Marketplace from '../abis/Marketplace.json'
+
+import LandingPage from "./pages/LandingPage"
+import HospitalPage from "./pages/HospitalPage"
+import OrganDonationNetwork from './abis/OrganDonationNetwork.json'
 
 function App() {
   const [account, setAccount] = useState(null)
@@ -30,12 +33,16 @@ function App() {
   const loadBlockchainData = async () => {
     const web3 = window.web3
     // Load account
+    console.log(web3)
     const accounts = await web3.eth.getAccounts()
-    setAccount(accounts[0])
+    // console.log(accounts)
+
+    setAccount("0x3A4a973A457B2a28917E2FAE26f630CD2064e611")
     const networkId = await web3.eth.net.getId()
-    const networkData = Marketplace.networks[networkId]
+    console.log(networkId)
+    const networkData = OrganDonationNetwork.networks["5777"]
     if(networkData) {
-      setOrganNetwork(web3.eth.Contract(Marketplace.abi, networkData.address))
+      setOrganNetwork(new web3.eth.Contract(OrganDonationNetwork.abi, networkData.address))
     }
   }
 
@@ -49,10 +56,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/donor">
-            <LandingPage organNetwork={organNetwork}/>
+            <LandingPage organNetwork={organNetwork} account={account}/>
           </Route>
           <Route path="/hospital">
-            <HospitalPage organNetwork={organNetwork}/>
+            <HospitalPage organNetwork={organNetwork} account={account}/>
           </Route>
           <Redirect path="/" to="/donor"/>
         </Switch>
@@ -62,3 +69,4 @@ function App() {
 }
 
 export default App
+
