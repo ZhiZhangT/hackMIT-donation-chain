@@ -4,7 +4,7 @@ const FormInput = props => {
             <div className="mb-2">{props.text}</div>
             <input 
                 className="text-md outline-none bg-transparent transition-all outline:none transform focus:-translate-y-1 focus:border-b-2 focus:border-blue-200" 
-                type="text" 
+                type={props.type ? props.type: "text"}
                 placeholder={props.placeholder}
                 onChange={e => props.callback(e.target.value)} 
                 name={props.text}
