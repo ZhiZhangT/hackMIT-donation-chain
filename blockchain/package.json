@@ -1,5 +1,5 @@
 {
-  "name": "hackMIT Organ Donation Chain",
+  "name": "hackMIT",
   "version": "1.0.0",
   "description": "Blockchain Organ Donation System Powered By Ethereum",
   "main": "truffle-config.js",
@@ -41,7 +41,6 @@
     "postcss": "^7.0.36",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.14"
   },
-
   "eslintConfig": {
     "extends": [
       "react-app",

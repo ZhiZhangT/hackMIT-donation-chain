@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Elderly support- Elderly login</title>
+    <title>OrganChain- Login</title>
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="navbar-brand">
                 <a class="navbar-item" href="H0.html">
-                    Elderly Support
+                    OrganChain
                 </a>
                 <div class="navbar-burger burger" data-target="topNav">
                     <span></span>
@@ -63,15 +63,29 @@
                         <form action="#" method="post">
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="text" name="username" placeholder="username" autofocus="">
+                                    <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
                                 </div>
                             </div>
 
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="password" name="pass" placeholder="Your Password">
+                                    <input class="input is-large" type="password" name="password" placeholder="Password">
                                 </div>
                             </div>
+                            <div class="control">
+                                <label class="radio">
+                                  <input type="radio" name="answer">
+                                  Donor
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="answer">
+                                    Patient
+                                  </label>
+                                <label class="radio">
+                                  <input type="radio" name="answer">
+                                  Medical professional
+                                </label>
+                              </div>
                             <button name="login_or_sign" type="submit" value="submit" class="button is-block is-primary is-medium is-fullwidth">Login <i
                                     class="fa fa-sign-in" aria-hidden="true"></i></button>
                             <p class="has-text-grey">
