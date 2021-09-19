@@ -19,6 +19,7 @@ contract OrganDonationNetwork{
         BloodType bloodType;
         uint size;
         string location;
+        address patient;
     }
 
     struct Patient {
@@ -59,13 +60,14 @@ contract OrganDonationNetwork{
 
     // create a sign up form in the UI
     // do form validation before sending this api call
-    function signUpForDonation(BloodType bloodType, Organ organ, string location) public{
+    function signUpForDonation(BloodType bloodType, Organ organ, uint size, string memory location) public{
         donors[msg.sender] = OrganDonor(
-            msg.sender,
             address(0),
             organ,
             bloodType,
-            location
+            size,
+            location,
+            address(0) // assign donors.patient address to its own address first.
         );
 
         emit LogDonor(msg.sender, bloodType, organ);
@@ -103,10 +105,6 @@ contract OrganDonationNetwork{
         require(donor != address(0));
         require(donors[donor].patient == address(0));
         delete donors[donor];
-    }
-
-    function viewDonors(address donor) public view returns(OrganDonor memory organDonor){
-        organDonor = donors[donor];
     }
 
     function viewDonors(address donor) public view returns(OrganDonor memory organDonor){
