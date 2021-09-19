@@ -9,9 +9,9 @@ const DonorForm = props => {
     
     return (
         <form className="flex flex-col w-96 px-5 rounded-xl shadow-lg">
-            <FormInput text="Name" placeholder="type name here" callback={setName} value={name}/>
-            <FormInput text="Blood type" placeholder="fill in your blood type" callback={setBloodType} value={bloodType}/>
-            <FormInput text="Street address" placeholder="fill in your street address" callback={setStreetAddress} value={streetAddress}/>
+            <FormInput text="Name" placeholder="Your name" callback={setName} value={name}/>
+            <FormInput text="Blood type" placeholder="Your blood type" callback={setBloodType} value={bloodType}/>
+            <FormInput text="Organ" placeholder="fill in your street address" callback={setStreetAddress} value={streetAddress}/>
             
             <label>
                 Organ
